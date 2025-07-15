@@ -8,9 +8,15 @@
 </head>
 <body>
   <h1>🧠 Jogo da Memória</h1>
+  <div class="layout">
+    <p>Tentativas:</p>
+    <p id="cont"></p>
+    <p>Tempo</p>
+    <p id="temp"></p>
+    <input type="text" class="cronometro" value="00:00" readonly>
+  </div>
   <button onclick="resetJogo" class="reset" id="reseta">Reniciar</button>
-  <p>Tentativas:</p>
-  <h3 id="cont"></h3>
+  <button class="reset" id="comeco" onclick="temporizar(0)">Começar</button>
   <div id="game-board" class="grid"></div>
   <p id="status"></p>
   <script src="script.js"></script>

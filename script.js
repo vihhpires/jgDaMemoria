@@ -2,6 +2,14 @@ const cardsArray = ['🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '�
 let cards = [...cardsArray, ...cardsArray]; // pares
 cards = cards.sort(() => 0.5 - Math.random()); // embaralhar
 
+let cont = 0;
+const contElemento = document.getElementById('cont')
+
+const começar = document.getElementById('comeco')
+let tempo = 0; //tempo em seg.
+let função = false; //se o time está funcionando
+let intervaloID = 0; //iden. do intervalo para limpar
+
 const gameBoard = document.getElementById('game-board');
 let firstCard = null;
 let secondCard = null;
@@ -18,6 +26,38 @@ cards.forEach((icon, index) => {
   gameBoard.appendChild(card);
 });
 
+function exibeTempo(){
+  let min = parseInt(tempo/60); //os minutos
+  let seg = tempo%60;  //os segundos
+  let smin = min.toString().padStart(2, '0');
+  let sseg = seg.toString().padStart(2, '0');
+
+  let tempoTela = smin + ':' + sseg; // variavel para deixar no estilo cronometro
+  document.querySelector(".cronometro").value = tempoTela;
+  tempo++;
+
+  if (matchedPairs === cardsArray.length){
+    função = false;
+    clearInterval(intervaloID);
+
+  }
+
+}
+
+function temporizar(t) {
+  if (função == false) {
+    função = true;
+    tempo = t;
+    exibeTempo();
+    intervaloID = setInterval(exibeTempo, 1000)// 1000 equivale a 1 seg.
+  }
+}
+
+/* começar.addEventListener('click', () => {
+  setTimeout(){
+    gameBoard.cardsArray('reveled');
+  } 3000;
+}) */
 
 function handleCardClick(e) {
   const clicked = e.target;
@@ -31,6 +71,10 @@ function handleCardClick(e) {
   } else {
     secondCard = clicked;
     lockBoard = true;
+
+    cont++;
+    contElemento.textContent = cont;
+
     let error;
     error = new Audio("sons/daf-error.mp3");
     error.play();
@@ -64,23 +108,6 @@ const btn = document.querySelector('#reseta');
 btn.addEventListener("click", () => {
   location.reload()
 })
-
-let cont = 0;
-let podeContar = true;
-let clicked = cards
-const contarElement = document.getElementById('cont');
-
-document.addEventListener('click', () =>{
-  if (clicked){
-    cont++;
-    contarElement.textContent = cont;
-    podeContar = true;
-   } else{
-    podeContar = false;
-   }
- })
-
-
 
 
 function resetSelection() {
