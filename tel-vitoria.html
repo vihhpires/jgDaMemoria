@@ -18,12 +18,43 @@
     <div class="vitorias">
         <div class="vitoria">
             <h1>🎉 Você venceu!</h1>
-            <img src="img/vitoria.jpg" alt="imagem com troféu e confetes">
+            <div class="layout2">
+                <p>Tentativas:</p>
+                <p id="cont"></p>
+                <p>Tempo Final</p>
+                <p id="temp"></p>
+                <input type="text" class="cronometro" value="00:00" readonly>
+            </div>
+            <p><strong>🏆 Seu melhor tempo:</strong> <span id="melhor-tempo">--:--</span></p>
+            <p><strong>🏆 Menor número de tentativas:</strong> <span id="melhor-movimentos">--</span></p>
+
+            <img class="ilumination" src="img/vitoria.jpg" alt="imagem com troféu e confetes">
             <button><a href="index.html"><h3>Jogar Novamente ✌️</h3></a></button>
             
         </div>
     </div>
+<script>
+    window.onload = () => {
+        // vai pegar os dados do localStorage(movimento e tempo final)
+        const Tentativas = localStorage.getItem('movimentosFinais');
+        const tempoFinal = localStorage.getItem('tempoFinal');
+        
+        //aqui ira atualizar com os dados finais 
+        document.getElementById('cont').innerHTML = Tentativas || '0';
+        document.getElementById('temp').innerHTML = tempoFinal || '00:00';
 
-    </div>
+        // mostra o recorde atual
+        const melhorTempo = localStorage.getItem('recordeTempo');
+        const melhorMovimentos = localStorage.getItem('recordeMovimentos');
+
+        //tira o input do cronometro
+        document.querySelector('.cronometro').style.display = 'none';
+
+        // limpa o local localStorage para a proxima partida
+        localStorage.removeItem('movimentosFinal');
+        localStorage.removeItem('tempoFinal');
+
+    };
+</script>
 </body>
 </html>

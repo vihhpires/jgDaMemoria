@@ -37,8 +37,9 @@ function exibeTempo(){
   tempo++;
 
   if (matchedPairs === cardsArray.length){
-    função = false;
+    função = true;
     clearInterval(intervaloID);
+
 
   }
 
@@ -48,16 +49,38 @@ function temporizar(t) {
   if (função == false) {
     função = true;
     tempo = t;
-    exibeTempo();
     intervaloID = setInterval(exibeTempo, 1000)// 1000 equivale a 1 seg.
   }
 }
 
-/* começar.addEventListener('click', () => {
-  setTimeout(){
-    gameBoard.cardsArray('reveled');
-  } 3000;
-}) */
+começar.addEventListener('click', () => {
+  console.log("Botão 'Começar' clicado!");
+
+  começar.ariaDisabled = true;
+
+   // vai chamar todo o elemento card 
+  const todosCard = document.querySelectorAll('.card');
+
+  //uma função aonde vai mostrar os icon dos cards
+  todosCard.forEach(card => {
+    card.innerText = card.dataset.icon; //pega o oculto e revela os icones do card
+    card.classList.add('reveled-temp');
+  }); 
+
+  // esconde de novo os icon
+  setTimeout(() => {
+    todosCard.forEach(card => {
+      card.innerText = '';
+      card.classList.remove('reveled-temp');
+    });
+    
+
+    // esconde os icones depois de 3 seg
+  },2000);
+
+  })
+
+
 
 function handleCardClick(e) {
   const clicked = e.target;
@@ -87,6 +110,8 @@ function handleCardClick(e) {
       acerto = new Audio("sons/acertou-pergunta.mp3");
       acerto.play();
       if (matchedPairs === cardsArray.length) {
+        localStorage.setItem('movimentosFinais', cont);
+        localStorage.setItem('tempoFinal', document.querySelector(".cronometro").value);
         window.location.href = "tel-vitoria.html";
         let vitoria;
         vitoria = new Audio("victorytone.mp3");

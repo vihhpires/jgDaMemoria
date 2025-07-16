@@ -31,7 +31,7 @@ No **jogo da memória** o jogador precisa encontrar pares de cartas iguais. O jo
 
 Para evoluir seu conhecimento, segue ideias de melhorias para implementar:
 
-* [ ] ✅ **Contador de movimentos**()
+* [ ] ✅ **Contador de movimentos**(já fiz)
   Exibir quantos pares o jogador já tentou.
 
 * [ ] ✅ **Temporizador (cronômetro)**
