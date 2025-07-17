@@ -44,8 +44,11 @@
         document.getElementById('temp').innerHTML = tempoFinal || '00:00';
 
         // mostra o recorde atual
-        const melhorTempo = localStorage.getItem('recordeTempo');
+        const melhorTempo = localStorage.getItem('recordeTempoFormatado');
         const melhorMovimentos = localStorage.getItem('recordeMovimentos');
+
+        document.getElementById('melhor-tempo').innerHTML = melhorTempo || '--:--';
+        document.getElementById('melhor-movimentos').innerHTML = melhorMovimentos || '--';
 
         //tira o input do cronometro
         document.querySelector('.cronometro').style.display = 'none';

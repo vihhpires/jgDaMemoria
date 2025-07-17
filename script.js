@@ -110,13 +110,32 @@ function handleCardClick(e) {
       acerto = new Audio("sons/acertou-pergunta.mp3");
       acerto.play();
       if (matchedPairs === cardsArray.length) {
-        localStorage.setItem('movimentosFinais', cont);
-        localStorage.setItem('tempoFinal', document.querySelector(".cronometro").value);
         window.location.href = "tel-vitoria.html";
-        let vitoria;
-        vitoria = new Audio("victorytone.mp3");
-        vitoria.autoplay();
-      }
+
+        const tempoFinal = tempo;
+        const tempoFormatado = document.querySelector(".cronometro").value;
+
+        // salva tempo e tentativas finais da partida
+        localStorage.setItem('movimentosFinais', cont);
+        localStorage.setItem('tempoFinal', tempoFormatado);
+
+        // salva recorde de tempo, se for menor
+        const tempoRecordeSalvo = localStorage.getItem('recordeTempo');
+        if (!tempoRecordeSalvo || tempoFinal < parseInt(tempoRecordeSalvo)) {
+          localStorage.setItem('recordeTempo', tempoFinal);
+          localStorage.setItem('recordeTempoFormatado', tempoFormatado);       
+        }
+
+        // salva recorde de movimentos, se for menor
+        const movimentosRecordeSalvo = localStorage.getItem('recordeMovimentos');
+        if (!movimentosRecordeSalvo || cont < parseInt(movimentosRecordeSalvo)) {
+          localStorage.setItem('recordeMovimentos', cont);
+        }
+
+        let vitoria = new Audio("victorytone.mp3");
+        vitoria.play();
+}
+
     } else {
       setTimeout(() => {
         firstCard.innerText = '';
