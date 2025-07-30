@@ -64,7 +64,7 @@ h1 {
 /* INICIO */
 
 .bodyinicio{
-  background-color: #1e90ff;
+  background-color: #1e90ff; 
 }
 
 .recepcao{
@@ -91,7 +91,7 @@ h1 {
   box-shadow: 10px 7px 10px rgba(34, 34, 34, 0.527);
 }
 
-.joga a{
+.joga h3{
   text-decoration: none;
   color: #1e90ff;
   font-family: "Limelight", sans-serif;
@@ -106,7 +106,7 @@ h1 {
   font-style: normal;
 }
 
-.joga a:hover{
+.joga h3:hover{
   color: #176dc3;
 }
 
@@ -142,7 +142,6 @@ h1 {
   border: 5px solid #1e90ff;
   border-radius: 10px;
   padding: 2px;
-  cursor: pointer;
   margin-left: 40px;
   margin-right: 40px;
 }
@@ -167,6 +166,7 @@ h1 {
   margin-left: 26.8em;
   margin-bottom: 1em;
   margin-top: 1em;
+  cursor: pointer;
 }
 
 .vitoria h1{
@@ -179,7 +179,7 @@ h1 {
   color: rgb(244, 244, 12);
 }
 
-.vitoria button a{
+.vitoria button h3{
   text-decoration: none;
   color:   #1e90ff;
   font-family: "Limelight", sans-serif;
@@ -188,7 +188,7 @@ h1 {
 
 }
 
-.vitoria a:hover{
+.vitoria h3:hover{
   color: #176dc3;
 }
 

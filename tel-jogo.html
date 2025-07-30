@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jogo da Memória</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>🧠 Jogo da Memória</h1>
+  <div class="layout">
+    <p>Tentativas:</p>
+    <p id="cont"></p>
+    <p>Tempo</p>
+    <p id="temp"></p>
+    <input type="text" class="cronometro" value="00:00" readonly>
+  </div>
+  <button class="reset" id="reseta">Reiniciar</button>
+  <button class="reset" id="comeco">Começar</button>
+  <div id="countdown" style="display: none;" class="countdown"></div>
+  <div id="game-board" class="grid"></div>
+  <p id="status"></p>
+  <script src="script.js"></script>
+</body>
+</html>

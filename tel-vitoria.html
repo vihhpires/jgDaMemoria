@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,51 +14,59 @@
     <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">
 
 </head>
+
 <body class="bodyvitoria">
 
-    <div class="vitorias">
-        <div class="vitoria">
-            <h1>🎉 Você venceu!</h1>
-            <div class="layout2">
-                <p>Tentativas:</p>
-                <p id="cont"></p>
-                <p>Tempo Final</p>
-                <p id="temp"></p>
-                <input type="text" class="cronometro" value="00:00" readonly>
-            </div>
-            <p><strong>🏆 Seu melhor tempo:</strong> <span id="melhor-tempo">--:--</span></p>
-            <p><strong>🏆 Menor número de tentativas:</strong> <span id="melhor-movimentos">--</span></p>
-
-            <img class="ilumination" src="img/vitoria.jpg" alt="imagem com troféu e confetes">
-            <button><a href="index.html"><h3>Jogar Novamente ✌️</h3></a></button>
-            
+    <div class="vitoria">
+        <h1>🎉 Você venceu!</h1>
+        <div class="layout2">
+            <p>Tentativas:</p>
+            <p id="cont"></p>
+            <p>Tempo Final</p>
+            <p id="temp"></p>
+            <input type="text" class="cronometro" value="00:00" readonly>
         </div>
+        <p><strong>🏆 Seu melhor tempo:</strong> <span id="melhor-tempo">--:--</span></p>
+        <p><strong>🏆 Menor número de tentativas:</strong> <span id="melhor-movimentos">--</span></p>
+
+        <img class="ilumination" src="img/vitoria.jpg" alt="imagem com troféu e confetes">
+        <button class="jgNovamente">
+            <h3>Jogar Novamenste ✌️</h3>
+        </button>
+
     </div>
-<script>
-    window.onload = () => {
-        // vai pegar os dados do localStorage(movimento e tempo final)
-        const Tentativas = localStorage.getItem('movimentosFinais');
-        const tempoFinal = localStorage.getItem('tempoFinal');
-        
-        //aqui ira atualizar com os dados finais 
-        document.getElementById('cont').innerHTML = Tentativas || '0';
-        document.getElementById('temp').innerHTML = tempoFinal || '00:00';
 
-        // mostra o recorde atual
-        const melhorTempo = localStorage.getItem('recordeTempoFormatado');
-        const melhorMovimentos = localStorage.getItem('recordeMovimentos');
+    <script src="script.js"></script>
+    <script>
+        window.onload = () => {
+            // vai pegar os dados do localStorage(movimento e tempo final)
+            const Tentativas = localStorage.getItem('movimentosFinais');
+            const tempoFinal = localStorage.getItem('tempoFinal');
 
-        document.getElementById('melhor-tempo').innerHTML = melhorTempo || '--:--';
-        document.getElementById('melhor-movimentos').innerHTML = melhorMovimentos || '--';
+            //aqui ira atualizar com os dados finais 
+            document.getElementById('cont').innerHTML = Tentativas || '0';
+            document.getElementById('temp').innerHTML = tempoFinal || '00:00';
 
-        //tira o input do cronometro
-        document.querySelector('.cronometro').style.display = 'none';
+            // mostra o recorde atual
+            const melhorTempo = localStorage.getItem('recordeTempoFormatado');
+            const melhorMovimentos = localStorage.getItem('recordeMovimentos');
 
-        // limpa o local localStorage para a proxima partida
-        localStorage.removeItem('movimentosFinal');
-        localStorage.removeItem('tempoFinal');
+            document.getElementById('melhor-tempo').innerHTML = melhorTempo || '--:--';
+            document.getElementById('melhor-movimentos').innerHTML = melhorMovimentos || '--';
 
-    };
-</script>
+            //tira o input do cronometro
+            document.querySelector('.cronometro').style.display = 'none';
+
+            // limpa o local localStorage para a proxima partida
+            localStorage.removeItem('movimentosFinais');
+            localStorage.removeItem('tempoFinal');
+
+            document.querySelector('.jgNovamente').addEventListener('click', () => {
+                location.href = 'tel-jogo.html';
+            });
+
+        };
+    </script>
 </body>
+
 </html>

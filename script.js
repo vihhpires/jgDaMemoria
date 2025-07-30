@@ -7,28 +7,30 @@ const contElemento = document.getElementById('cont')
 
 const começar = document.getElementById('comeco')
 let tempo = 0; //tempo em seg.
-let função = false; //se o time está funcionando
+let funcao = false; //se o time está funcionando
 let intervaloID = 0; //iden. do intervalo para limpar
 
 const gameBoard = document.getElementById('game-board');
-let firstCard = null;
+let firstCard = null;   
 let secondCard = null;
 let lockBoard = false;
 let matchedPairs = 0;
 
-cards.forEach((icon, index) => {
-  const card = document.createElement('div');
-  card.classList.add('card');
-  card.dataset.icon = icon;
-  card.dataset.index = index;
-  card.innerText = ''; // Oculto por padrão
-  card.addEventListener('click', handleCardClick);
-  gameBoard.appendChild(card);
-});
+if (gameBoard) {
+  cards.forEach((icon, index) => {
+    const card = document.createElement('div');
+    card.classList.add('card');
+    card.dataset.icon = icon;
+    card.dataset.index = index;
+    card.innerText = ''; // Oculto por padrão
+    card.addEventListener('click', handleCardClick);
+    gameBoard.appendChild(card);
+  });
+}
 
-function exibeTempo(){
-  let min = parseInt(tempo/60); //os minutos
-  let seg = tempo%60;  //os segundos
+function exibeTempo() {
+  let min = parseInt(tempo / 60); //os minutos
+  let seg = tempo % 60;  //os segundos
   let smin = min.toString().padStart(2, '0');
   let sseg = seg.toString().padStart(2, '0');
 
@@ -36,8 +38,8 @@ function exibeTempo(){
   document.querySelector(".cronometro").value = tempoTela;
   tempo++;
 
-  if (matchedPairs === cardsArray.length){
-    função = true;
+  if (matchedPairs === cardsArray.length) {
+    funcao = true;
     clearInterval(intervaloID);
 
 
@@ -45,8 +47,18 @@ function exibeTempo(){
 
 }
 
+
+const jogar = document.querySelector('.joga');
+if (jogar) {
+  jogar.addEventListener('click', () => {
+    location.href = 'tel-jogo.html';
+  })
+}
+
+
+
 function temporizar(t) {
-  if (função == false) {
+  if (funcao == false) {
     função = true;
     tempo = t;
     intervaloID = setInterval(exibeTempo, 1000)// 1000 equivale a 1 seg.
@@ -54,18 +66,19 @@ function temporizar(t) {
 }
 
 começar.addEventListener('click', () => {
+  temporizar(0);
   console.log("Botão 'Começar' clicado!");
 
-  começar.ariaDisabled = true;
+  começar.disabled = true;
 
-   // vai chamar todo o elemento card 
+  // vai chamar todo o elemento card 
   const todosCard = document.querySelectorAll('.card');
 
   //uma função aonde vai mostrar os icon dos cards
   todosCard.forEach(card => {
     card.innerText = card.dataset.icon; //pega o oculto e revela os icones do card
     card.classList.add('reveled-temp');
-  }); 
+  });
 
   // esconde de novo os icon
   setTimeout(() => {
@@ -73,12 +86,12 @@ começar.addEventListener('click', () => {
       card.innerText = '';
       card.classList.remove('reveled-temp');
     });
-    
+
 
     // esconde os icones depois de 3 seg
-  },2000);
+  }, 2000);
 
-  })
+})
 
 
 
@@ -123,7 +136,7 @@ function handleCardClick(e) {
         const tempoRecordeSalvo = localStorage.getItem('recordeTempo');
         if (!tempoRecordeSalvo || tempoFinal < parseInt(tempoRecordeSalvo)) {
           localStorage.setItem('recordeTempo', tempoFinal);
-          localStorage.setItem('recordeTempoFormatado', tempoFormatado);       
+          localStorage.setItem('recordeTempoFormatado', tempoFormatado);
         }
 
         // salva recorde de movimentos, se for menor
@@ -134,7 +147,7 @@ function handleCardClick(e) {
 
         let vitoria = new Audio("victorytone.mp3");
         vitoria.play();
-}
+      }
 
     } else {
       setTimeout(() => {
@@ -158,3 +171,4 @@ function resetSelection() {
   [firstCard, secondCard] = [null, null];
   lockBoard = false;
 }
+
